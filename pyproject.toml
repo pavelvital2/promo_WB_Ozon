@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "promo"
+version = "0.1.0"
+description = "Promo discount calculator backend skeleton"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "alembic>=1.13",
+  "fastapi>=0.135",
+  "openpyxl>=3.1",
+  "psycopg[binary]>=3.1",
+  "SQLAlchemy>=2.0",
+  "uvicorn>=0.44",
+]
+
+[project.scripts]
+promo-cli = "promo.admin_cli.main:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

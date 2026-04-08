@@ -1,0 +1,7 @@
+interface:
+  display_name: "Project Orchestrator"
+  short_description: "Coordinates staged work, handoffs, acceptance, and scope boundaries."
+  default_prompt: "Use the orchestrator skill to determine the correct next atomic task and prepare a handoff packet."
+
+policy:
+  allow_implicit_invocation: false

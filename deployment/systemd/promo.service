@@ -1,0 +1,25 @@
+[Unit]
+Description=Promo web application
+After=network.target postgresql.service
+Wants=network.target
+
+[Service]
+Type=simple
+User=promo
+Group=www-data
+WorkingDirectory=/srv/promo/current
+EnvironmentFile=/etc/promo/promo.env
+ExecStartPre=/srv/promo/current/deployment/scripts/prepare_runtime_dirs.sh
+ExecStart=/srv/promo/venv/bin/python -m promo.presentation
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=20
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/promo/storage
+
+[Install]
+WantedBy=multi-user.target

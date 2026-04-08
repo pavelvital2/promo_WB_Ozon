@@ -1,0 +1,15 @@
+# Application logs are expected to be collected by systemd-journald.
+# This file rotates nginx logs for the promo vhost.
+/var/log/nginx/promo.access.log /var/log/nginx/promo.error.log {
+    daily
+    rotate 14
+    missingok
+    notifempty
+    compress
+    delaycompress
+    sharedscripts
+    create 0640 www-data adm
+    postrotate
+        [ -s /run/nginx.pid ] && kill -USR1 "$(cat /run/nginx.pid)"
+    endscript
+}
